@@ -1,0 +1,10 @@
+{
+  "name": "jardim-espaco-educacao-site",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node server.js",
+    "generate:webhook-key": "node scripts/generate-webhook-key.js"
+  }
+}

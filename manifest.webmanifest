@@ -1,0 +1,19 @@
+{
+  "name": "Jardim Espaço de Educação",
+  "short_name": "Jardim Espaço",
+  "description": "Creche escola construtivista para crianças de 4 meses a 6 anos em Jacarepaguá.",
+  "lang": "pt-BR",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "background_color": "#f2f8ff",
+  "theme_color": "#063a72",
+  "icons": [
+    {
+      "src": "/assets/icons/pwa-icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}

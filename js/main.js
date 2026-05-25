@@ -19,16 +19,21 @@ document.addEventListener("DOMContentLoaded", () => {
         header?.classList.toggle("is-scrolled", window.scrollY > 12);
     };
 
+    const setToggleA11yState = (isOpen) => {
+        toggle?.setAttribute("aria-expanded", isOpen ? "true" : "false");
+        toggle?.setAttribute("aria-label", isOpen ? "Fechar menu" : "Abrir menu");
+    };
+
     const closeNav = () => {
         nav?.classList.remove("is-open");
         document.body.classList.remove("nav-open");
-        toggle?.setAttribute("aria-expanded", "false");
+        setToggleA11yState(false);
     };
 
     const openNav = () => {
         nav?.classList.add("is-open");
         document.body.classList.add("nav-open");
-        toggle?.setAttribute("aria-expanded", "true");
+        setToggleA11yState(true);
     };
 
     toggle?.addEventListener("click", () => {
@@ -73,6 +78,7 @@ document.addEventListener("DOMContentLoaded", () => {
     );
 
     sections.forEach((section) => observer.observe(section));
+    setToggleA11yState(false);
     setHeaderState();
     window.addEventListener("scroll", setHeaderState, { passive: true });
 

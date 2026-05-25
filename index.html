@@ -22,14 +22,23 @@
                 <img class="brand-logo" src="./assets/images/logo-jardim.png" alt="Jardim Espaço de Educação">
             </a>
 
-            <button class="nav-toggle" type="button" aria-label="Abrir menu" aria-expanded="false" data-nav-toggle>
-                <i class="ph ph-list" aria-hidden="true"></i>
+            <button class="nav-toggle" type="button" aria-label="Abrir menu" aria-expanded="false" aria-controls="menu-principal" data-nav-toggle>
+                <span class="nav-toggle-lines" aria-hidden="true">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </span>
             </button>
 
-            <nav class="site-nav" data-nav>
+            <nav class="site-nav" id="menu-principal" aria-label="Menu principal" data-nav>
                 <div class="nav-header">
-                    <img class="nav-logo" src="./assets/images/logo-jardim.png" alt="Jardim Espaço de Educação">
-                    <p class="nav-motto">Cultivando a potência da infância com afeto e autonomia.</p>
+                    <div>
+                        <img class="nav-logo" src="./assets/images/logo-jardim.png" alt="Jardim Espaço de Educação">
+                        <p class="nav-motto">Cultivando a potência da infância com afeto e autonomia.</p>
+                    </div>
+                    <button class="nav-close" type="button" aria-label="Fechar menu" data-nav-close>
+                        <i class="ph ph-x" aria-hidden="true"></i>
+                    </button>
                 </div>
 
                 <a href="#essencia">
@@ -88,7 +97,7 @@
             <img class="hero-bg" src="./assets/images/hero-roda.jpg" alt="Crianças em roda com educadora no Jardim Espaço de Educação">
             <div class="hero-overlay"></div>
             <div class="container hero-content">
-                <p class="eyebrow">Creche escola construtivista em Jacarepaguá</p>
+                <p class="eyebrow">Creche escola em Jacarepaguá</p>
                 <h1>Jardim Espaço de Educação</h1>
                 <p class="hero-lead">Educação infantil acolhedora para crianças de 4 meses a 6 anos, com horário escolar e integral em uma casa preparada para cuidar, brincar e aprender.</p>
                 <div class="hero-actions">
@@ -192,10 +201,22 @@
                         <div class="pedagogy-widget" aria-label="Ciclo de acompanhamento pedagógico">
                             <span class="widget-label">Ciclo pedagógico</span>
                             <ol>
-                                <li>Escutar</li>
-                                <li>Registrar</li>
-                                <li>Planejar</li>
-                                <li>Acompanhar</li>
+                                <li>
+                                    <strong>Escutar</strong>
+                                    <span>Observar interesses, gestos e necessidades da criança.</span>
+                                </li>
+                                <li>
+                                    <strong>Registrar</strong>
+                                    <span>Documentar descobertas e avanços do cotidiano.</span>
+                                </li>
+                                <li>
+                                    <strong>Planejar</strong>
+                                    <span>Propor vivências com intencionalidade e afeto.</span>
+                                </li>
+                                <li>
+                                    <strong>Acompanhar</strong>
+                                    <span>Rever caminhos com família, equipe e criança.</span>
+                                </li>
                             </ol>
                         </div>
                     </div>

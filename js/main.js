@@ -6,8 +6,8 @@ document.addEventListener("DOMContentLoaded", () => {
     const header = document.querySelector("[data-header]");
     const nav = document.querySelector("[data-nav]");
     const toggle = document.querySelector("[data-nav-toggle]");
+    const closeButton = document.querySelector("[data-nav-close]");
     const navOverlay = document.querySelector("[data-nav-overlay]");
-    const toggleIcon = toggle?.querySelector("i");
     const navLinks = [...document.querySelectorAll(".site-nav a[href^='#']")];
     const leadForm = document.querySelector("[data-lead-form]");
     const formStatus = document.querySelector("[data-form-status]");
@@ -23,16 +23,12 @@ document.addEventListener("DOMContentLoaded", () => {
         nav?.classList.remove("is-open");
         document.body.classList.remove("nav-open");
         toggle?.setAttribute("aria-expanded", "false");
-        toggleIcon?.classList.add("ph-list");
-        toggleIcon?.classList.remove("ph-x");
     };
 
     const openNav = () => {
         nav?.classList.add("is-open");
         document.body.classList.add("nav-open");
         toggle?.setAttribute("aria-expanded", "true");
-        toggleIcon?.classList.remove("ph-list");
-        toggleIcon?.classList.add("ph-x");
     };
 
     toggle?.addEventListener("click", () => {
@@ -49,6 +45,7 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 
     navOverlay?.addEventListener("click", closeNav);
+    closeButton?.addEventListener("click", closeNav);
 
     document.addEventListener("keydown", (event) => {
         if (event.key === "Escape") {

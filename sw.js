@@ -1,4 +1,4 @@
-const CACHE_VERSION = "jardim-pwa-v1";
+const CACHE_VERSION = "jardim-pwa-v2";
 const APP_SHELL = [
   "/",
   "/index.html",

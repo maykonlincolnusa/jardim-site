@@ -6,6 +6,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const header = document.querySelector("[data-header]");
     const nav = document.querySelector("[data-nav]");
     const toggle = document.querySelector("[data-nav-toggle]");
+    const toggleLabel = document.querySelector("[data-nav-toggle-label]");
     const closeButton = document.querySelector("[data-nav-close]");
     const navOverlay = document.querySelector("[data-nav-overlay]");
     const navLinks = [...document.querySelectorAll(".site-nav a[href^='#']")];
@@ -22,6 +23,9 @@ document.addEventListener("DOMContentLoaded", () => {
     const setToggleA11yState = (isOpen) => {
         toggle?.setAttribute("aria-expanded", isOpen ? "true" : "false");
         toggle?.setAttribute("aria-label", isOpen ? "Fechar menu" : "Abrir menu");
+        if (toggleLabel) {
+            toggleLabel.textContent = isOpen ? "Fechar" : "Menu";
+        }
     };
 
     const closeNav = () => {

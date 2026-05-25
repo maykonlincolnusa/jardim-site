@@ -68,9 +68,7 @@ img {
     max-width: 100%;
 }
 
-.ph {
-    display: none;
-}
+
 
 a {
     color: inherit;
@@ -165,6 +163,13 @@ textarea {
 .site-nav .nav-cta:hover {
     background: var(--green-700);
     color: var(--paper);
+}
+
+/* Ocultar elementos mobile no desktop */
+.nav-header,
+.nav-footer,
+.nav-link-icon {
+    display: none;
 }
 
 .nav-toggle {
@@ -1283,6 +1288,13 @@ textarea:focus-visible {
         display: inline-grid;
         place-items: center;
         z-index: 42;
+        border: 1px solid rgba(216, 224, 234, 0.8);
+        box-shadow: 0 4px 12px rgba(6, 58, 114, 0.06);
+        transition: all var(--motion-fast);
+    }
+
+    .nav-toggle:active {
+        transform: scale(0.92);
     }
 
     .site-nav {
@@ -1290,19 +1302,27 @@ textarea:focus-visible {
         top: 0;
         right: 0;
         bottom: 0;
-        width: min(84vw, 360px);
-        display: grid;
-        align-content: start;
-        gap: 10px;
-        padding: calc(var(--header-height) + 20px) 18px 20px;
-        border-left: 1px solid var(--line);
-        background: var(--paper);
-        box-shadow: -14px 0 36px rgba(20, 35, 55, 0.16);
+        width: min(86vw, 360px);
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+        padding: 24px 20px 40px;
+        border-left: 1px solid rgba(255, 255, 255, 0.4);
+        background: rgba(255, 255, 255, 0.88);
+        backdrop-filter: blur(24px) saturate(190%);
+        -webkit-backdrop-filter: blur(24px) saturate(190%);
+        box-shadow: -10px 0 40px rgba(6, 58, 114, 0.14);
         transform: translateX(108%);
         opacity: 1;
         pointer-events: none;
         z-index: 40;
         transition: transform var(--motion-soft);
+        overflow-y: auto;
+        scrollbar-width: none; /* Firefox */
+    }
+
+    .site-nav::-webkit-scrollbar {
+        display: none; /* Safari/Chrome */
     }
 
     .site-nav.is-open {
@@ -1310,23 +1330,213 @@ textarea:focus-visible {
         pointer-events: auto;
     }
 
+    /* Mostrar elementos mobile */
+    .nav-header {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+        margin-bottom: 12px;
+        padding-bottom: 16px;
+        border-bottom: 1px solid rgba(6, 58, 114, 0.08);
+    }
+
+    .nav-logo {
+        width: 120px;
+        height: auto;
+        max-height: 48px;
+        object-fit: contain;
+    }
+
+    .nav-motto {
+        margin: 0;
+        font-size: 0.76rem;
+        font-weight: 700;
+        line-height: 1.35;
+        color: var(--muted);
+        letter-spacing: 0.01em;
+    }
+
+    .nav-link-icon {
+        display: inline-block;
+        font-size: 1.25rem;
+        margin-right: 12px;
+        transition: transform var(--motion-fast);
+    }
+
+    /* Cores dedicadas para ícones */
+    .site-nav a[href="#essencia"] .nav-link-icon { color: var(--green-700); }
+    .site-nav a[href="#porque"] .nav-link-icon { color: var(--coral-500); }
+    .site-nav a[href="#espacos"] .nav-link-icon { color: var(--blue-700); }
+    .site-nav a[href="#integral"] .nav-link-icon { color: var(--yellow-400); }
+    .site-nav a.nav-cta .nav-link-icon { color: var(--paper); }
+
     .site-nav a {
+        display: flex;
+        align-items: center;
         justify-content: flex-start;
-        min-height: 48px;
-        padding: 0 16px;
-        font-size: 0.98rem;
-        border: 1px solid rgba(216, 224, 234, 0.9);
-        background: var(--wash);
+        min-height: 52px;
+        padding: 0 18px;
+        font-size: 0.96rem;
+        font-weight: 800;
+        color: var(--blue-900);
+        border: 1px solid rgba(216, 224, 234, 0.5);
+        border-radius: 12px;
+        background: rgba(255, 255, 255, 0.6);
+        box-shadow: 0 2px 6px rgba(6, 58, 114, 0.02);
+        transition: all var(--motion-fast);
+    }
+
+    .site-nav a:hover,
+    .site-nav a.is-active {
+        background: var(--soft-sky);
+        border-color: rgba(7, 92, 168, 0.28);
+        color: var(--blue-700);
+        transform: translateX(4px);
+    }
+
+    .site-nav a[href="#essencia"]:hover,
+    .site-nav a[href="#essencia"].is-active {
+        background: var(--mint);
+        border-color: rgba(53, 183, 121, 0.28);
+        color: var(--green-700);
     }
 
     .site-nav .nav-cta {
-        margin-top: 8px;
+        margin-top: 6px;
+        background: var(--blue-900);
+        border-color: var(--blue-900);
+        color: var(--paper) !important;
+        box-shadow: 0 10px 24px rgba(6, 58, 114, 0.18);
         justify-content: center;
+        font-weight: 900;
     }
 
-    .site-nav .nav-cta,
     .site-nav .nav-cta:hover {
-        color: var(--paper);
+        background: var(--green-700);
+        border-color: var(--green-700);
+        color: var(--paper) !important;
+        transform: translateY(-2px);
+        box-shadow: 0 12px 28px rgba(18, 136, 95, 0.24);
+    }
+
+    /* Rodapé com canais de contato e WhatsApp rápido */
+    .nav-footer {
+        display: flex;
+        flex-direction: column;
+        gap: 14px;
+        margin-top: auto;
+        padding-top: 20px;
+        border-top: 1px solid rgba(6, 58, 114, 0.08);
+    }
+
+    .nav-footer-title {
+        display: block;
+        font-size: 0.72rem;
+        font-weight: 900;
+        color: var(--muted);
+        text-transform: uppercase;
+        letter-spacing: 0.08em;
+        margin-bottom: -2px;
+    }
+
+    .nav-whatsapp-btn {
+        display: flex !important;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+        min-height: 48px;
+        background: #25d366 !important;
+        color: var(--paper) !important;
+        border: 0 !important;
+        border-radius: 12px !important;
+        box-shadow: 0 8px 20px rgba(37, 211, 102, 0.26) !important;
+        font-weight: 900 !important;
+        font-size: 0.94rem !important;
+        transition: all var(--motion-fast) !important;
+    }
+
+    .nav-whatsapp-btn:hover {
+        background: #20ba59 !important;
+        transform: translateY(-2px) !important;
+        box-shadow: 0 10px 24px rgba(37, 211, 102, 0.36) !important;
+    }
+
+    .wa-icon {
+        width: 22px;
+        height: 22px;
+    }
+
+    .nav-contact-info {
+        display: grid;
+        gap: 10px;
+        padding: 14px;
+        border-radius: 12px;
+        background: var(--soft-sky);
+        border: 1px solid rgba(7, 92, 168, 0.08);
+    }
+
+    .nav-contact-item {
+        display: flex;
+        align-items: flex-start;
+        gap: 8px;
+        color: var(--blue-900);
+        font-size: 0.82rem;
+        font-weight: 750;
+        line-height: 1.4;
+    }
+
+    .nav-contact-item i {
+        font-size: 1.05rem;
+        color: var(--green-700);
+        margin-top: 1px;
+    }
+
+    /* Efeito de stagger fade-in na abertura do menu */
+    @keyframes navLinkFadeIn {
+        from {
+            opacity: 0;
+            transform: translateY(15px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    .site-nav.is-open .nav-header {
+        animation: navLinkFadeIn 0.35s ease forwards;
+        animation-delay: 0.05s;
+        opacity: 0;
+    }
+    .site-nav.is-open a:nth-of-type(1) {
+        animation: navLinkFadeIn 0.35s ease forwards;
+        animation-delay: 0.1s;
+        opacity: 0;
+    }
+    .site-nav.is-open a:nth-of-type(2) {
+        animation: navLinkFadeIn 0.35s ease forwards;
+        animation-delay: 0.15s;
+        opacity: 0;
+    }
+    .site-nav.is-open a:nth-of-type(3) {
+        animation: navLinkFadeIn 0.35s ease forwards;
+        animation-delay: 0.2s;
+        opacity: 0;
+    }
+    .site-nav.is-open a:nth-of-type(4) {
+        animation: navLinkFadeIn 0.35s ease forwards;
+        animation-delay: 0.25s;
+        opacity: 0;
+    }
+    .site-nav.is-open a:nth-of-type(5) {
+        animation: navLinkFadeIn 0.35s ease forwards;
+        animation-delay: 0.3s;
+        opacity: 0;
+    }
+    .site-nav.is-open .nav-footer {
+        animation: navLinkFadeIn 0.4s ease forwards;
+        animation-delay: 0.35s;
+        opacity: 0;
     }
 
     .facts-grid,

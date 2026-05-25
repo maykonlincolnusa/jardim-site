@@ -1363,10 +1363,10 @@ textarea:focus-visible {
     }
 
     body.nav-open .nav-toggle {
-        border-color: rgba(6, 58, 114, 0.22);
-        background: var(--paper);
-        color: var(--blue-900);
-        box-shadow: 0 10px 24px rgba(6, 58, 114, 0.2);
+        border-color: rgba(6, 58, 114, 0.16);
+        background: linear-gradient(180deg, #0a4a8f 0%, #063a72 100%);
+        color: var(--paper);
+        box-shadow: 0 12px 24px rgba(6, 58, 114, 0.24);
         transform: scale(1);
     }
 
@@ -1440,13 +1440,13 @@ textarea:focus-visible {
         flex: 0 0 auto;
         width: 42px;
         height: 42px;
-        border: 1px solid rgba(216, 224, 234, 0.95);
+        border: 1px solid rgba(6, 58, 114, 0.16);
         border-radius: 14px;
-        background: var(--paper);
-        color: var(--blue-900);
+        background: linear-gradient(180deg, #0a4a8f 0%, #063a72 100%);
+        color: var(--paper);
         font-size: 1.2rem;
         cursor: pointer;
-        box-shadow: 0 8px 18px rgba(20, 35, 55, 0.08);
+        box-shadow: 0 10px 22px rgba(6, 58, 114, 0.18);
         transition: transform var(--motion-fast), background var(--motion-fast), color var(--motion-fast);
     }
 

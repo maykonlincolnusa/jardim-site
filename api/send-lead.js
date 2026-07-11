@@ -62,6 +62,8 @@ function buildAgentPayload(body) {
 
   return {
     source: "school_website",
+    productId: cleanText(pick(body, ["productId", "product_id", "interesse"])),
+    productName: cleanText(pick(body, ["productName", "product_name"])),
     name: cleanText(pick(body, ["name", "nome_responsavel"])),
     phone: cleanText(pick(body, ["phone", "telefone"])),
     email: cleanText(pick(body, ["email"])),
@@ -71,6 +73,7 @@ function buildAgentPayload(body) {
     wantsVisit: toBoolean(pick(body, ["wantsVisit", "quer_visita"])) || formType === "visit" || formType === "visita",
     preferredVisitDay: cleanText(pick(body, ["preferredVisitDay", "dia_visita"])),
     preferredVisitTime: cleanText(pick(body, ["preferredVisitTime", "periodo_visita"])),
+    landingPage: cleanText(pick(body, ["landingPage", "landing_page"])),
     createdAt: new Date().toISOString()
   };
 }

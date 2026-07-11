@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Prévia mobile — Jardim Espaço</title>
+    <style>
+        * { box-sizing: border-box; }
+        body {
+            min-height: 100vh;
+            margin: 0;
+            padding: 28px;
+            display: grid;
+            place-items: start center;
+            background: #dfe5ec;
+            color: #17212f;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+        .preview-shell { text-align: center; }
+        .preview-label {
+            margin: 0 0 12px;
+            color: #4b5565;
+            font-size: 13px;
+            font-weight: 700;
+        }
+        .preview-nav {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 6px;
+            width: 414px;
+            margin-bottom: 12px;
+        }
+        .preview-nav button {
+            padding: 7px 10px;
+            border: 1px solid #aab4c0;
+            border-radius: 999px;
+            background: #fff;
+            color: #063a72;
+            font: 700 11px Arial, sans-serif;
+            cursor: pointer;
+        }
+        .device {
+            width: 414px;
+            padding: 12px;
+            border: 1px solid #aab4c0;
+            border-radius: 30px;
+            background: #17212f;
+            box-shadow: 0 24px 70px rgba(23, 33, 47, 0.28);
+        }
+        iframe {
+            display: block;
+            width: 390px;
+            height: 844px;
+            border: 0;
+            border-radius: 20px;
+            background: #fff;
+        }
+    </style>
+</head>
+<body>
+    <main class="preview-shell">
+        <p class="preview-label">Prévia mobile · viewport 390 × 844</p>
+        <nav class="preview-nav" aria-label="Escolher página para visualizar">
+            <button data-page="/?preview=mobile-v6">Início</button>
+            <button data-page="/produtos.html?v=design-2">Produtos</button>
+            <button data-page="/jardim-acolher.html">Acolher</button>
+            <button data-page="/jardim-baby-care.html">Baby Care</button>
+            <button data-page="/jardim-integral-humanizado.html">Integral</button>
+            <button data-page="/jardim-familia.html">Família</button>
+            <button data-page="/jardim-club.html">Club</button>
+        </nav>
+        <div class="device">
+            <iframe id="mobile-frame" src="/?preview=mobile-v6" title="Site Jardim Espaço em visualização mobile"></iframe>
+        </div>
+    </main>
+    <script>
+        const frame = document.querySelector("#mobile-frame");
+        document.querySelectorAll("[data-page]").forEach((button) => {
+            button.addEventListener("click", () => { frame.src = button.dataset.page; });
+        });
+    </script>
+</body>
+</html>

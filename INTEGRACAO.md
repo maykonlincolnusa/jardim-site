@@ -72,6 +72,8 @@ x-api-key: process.env.AGENT_WEBHOOK_API_KEY
 ```json
 {
   "source": "school_website",
+  "productId": "acolher",
+  "productName": "Jardim Acolher",
   "name": "",
   "phone": "",
   "email": "",
@@ -81,6 +83,7 @@ x-api-key: process.env.AGENT_WEBHOOK_API_KEY
   "wantsVisit": false,
   "preferredVisitDay": "",
   "preferredVisitTime": "",
+  "landingPage": "/",
   "createdAt": ""
 }
 ```

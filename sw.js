@@ -1,7 +1,14 @@
-const CACHE_VERSION = "jardim-pwa-v2";
+const CACHE_VERSION = "jardim-pwa-v11";
 const APP_SHELL = [
   "/",
   "/index.html",
+  "/politica-de-privacidade.html",
+  "/produtos.html",
+  "/jardim-acolher.html",
+  "/jardim-baby-care.html",
+  "/jardim-integral-humanizado.html",
+  "/jardim-familia.html",
+  "/jardim-club.html",
   "/css/style.css",
   "/js/main.js",
   "/manifest.webmanifest",

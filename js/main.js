@@ -12,6 +12,12 @@ document.addEventListener("DOMContentLoaded", () => {
     const navLinks = [...document.querySelectorAll(".site-nav a[href^='#']")];
     const leadForm = document.querySelector("[data-lead-form]");
     const formStatus = document.querySelector("[data-form-status]");
+    const productLinks = [...document.querySelectorAll("[data-product]")];
+    const interestSelect = leadForm?.querySelector("[name='interesse']");
+    const selectedProduct = leadForm?.querySelector("[data-selected-product]");
+    const selectedProductName = leadForm?.querySelector("[data-selected-product-name]");
+    const privacyNotice = document.querySelector("[data-privacy-notice]");
+    const privacyAcknowledge = document.querySelector("[data-privacy-acknowledge]");
     const sections = navLinks
         .map((link) => document.querySelector(link.getAttribute("href")))
         .filter(Boolean);
@@ -86,6 +92,48 @@ document.addEventListener("DOMContentLoaded", () => {
     setHeaderState();
     window.addEventListener("scroll", setHeaderState, { passive: true });
 
+    const requestedProduct = new URLSearchParams(window.location.search).get("produto");
+    if (requestedProduct && interestSelect) {
+        const requestedOption = [...interestSelect.options].find((option) => option.value === requestedProduct);
+        if (requestedOption) {
+            interestSelect.value = requestedProduct;
+            showSelectedProduct(requestedOption.textContent);
+        }
+    }
+
+    try {
+        privacyNotice.hidden = localStorage.getItem("jardim_privacy_notice") === "acknowledged";
+    } catch {
+        privacyNotice.hidden = false;
+    }
+
+    privacyAcknowledge?.addEventListener("click", () => {
+        privacyNotice.hidden = true;
+        try {
+            localStorage.setItem("jardim_privacy_notice", "acknowledged");
+        } catch {
+            // O aviso ainda pode ser fechado quando o armazenamento local estiver indisponível.
+        }
+    });
+
+    productLinks.forEach((link) => {
+        link.addEventListener("click", () => {
+            const productId = cleanText(link.dataset.product);
+            const productName = cleanText(link.dataset.productName);
+
+            if (interestSelect && [...interestSelect.options].some((option) => option.value === productId)) {
+                interestSelect.value = productId;
+            }
+
+            showSelectedProduct(productName);
+        });
+    });
+
+    interestSelect?.addEventListener("change", () => {
+        const option = interestSelect.options[interestSelect.selectedIndex];
+        showSelectedProduct(interestSelect.value ? option.textContent : "");
+    });
+
     leadForm?.addEventListener("submit", async (event) => {
         event.preventDefault();
 
@@ -127,6 +175,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
             setFormStatus(data.message || SUCCESS_MESSAGE, "success");
             leadForm.reset();
+            showSelectedProduct("");
         } catch (error) {
             console.error("Erro ao enviar lead:", error);
             setFormStatus(ERROR_MESSAGE, "error");
@@ -146,16 +195,33 @@ document.addEventListener("DOMContentLoaded", () => {
         ].filter(Boolean).join("\n\n");
 
         return {
+            productId: interest,
+            productName: getSelectedInterestName(formData),
             name: cleanText(formData.get("nome_responsavel")),
             phone: cleanText(formData.get("telefone")),
             email: cleanText(formData.get("email")),
             studentName: cleanText(formData.get("nome_aluno")),
             studentAgeOrGrade: cleanText(formData.get("idade_crianca")),
             message: combinedMessage,
-            wantsVisit: false,
+            wantsVisit: true,
             preferredVisitDay: cleanText(formData.get("dia_visita")),
-            preferredVisitTime: cleanText(formData.get("periodo_visita"))
+            preferredVisitTime: cleanText(formData.get("periodo_visita")),
+            landingPage: window.location.pathname
         };
+    }
+
+    function getSelectedInterestName(formData) {
+        const selectedValue = cleanText(formData.get("interesse"));
+        const option = interestSelect
+            ? [...interestSelect.options].find((item) => item.value === selectedValue)
+            : null;
+        return cleanText(option?.textContent || selectedValue);
+    }
+
+    function showSelectedProduct(name) {
+        if (!selectedProduct || !selectedProductName) return;
+        selectedProduct.hidden = !name;
+        selectedProductName.textContent = name;
     }
 
     function validatePayload(payload) {
